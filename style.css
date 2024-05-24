@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -mos-osx-font-smoothing: grayscale;
+}
+
+:root {
+  font-size: 62.5%;
+  --hue: 240;
+  /* Dessa forma poderíamos alterar toda a cor do nosso site através de uma única variável (o mesmo também poderia ser 
+  verdade para a saturação e a luz, caso declarássemos as variáveis correspondentes */
+  --color-base-white: hsl(0, 0%, 100%);
+  --color-base-gray-50: hsl(0, 0%, 93%);
+  --color-base-gray-100: hsl(0, 0%, 96%);
+  --color-base-gray-300: hsl(var(--hue), 6%, 58%);
+  --color-base-gray-500: hsl(0, 0%, 24%);
+  --color-base-gray-900: hsl(var(--hue), 6%, 13%);
+}
+
+html,
+body,
+input {
+  font-family: "Mulish", sans-serif;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-size: 1.6rem;
+  background-color: var(--color-base-white);
+  color: var(--color-gray-900);
+}
+
+.appContainer {
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  height: 100vh;
+}
+
+.container {
+  padding: 1.6rem 3.2rem;
+  width: min(112rem, 100%);
+  margin: 0 auto;
+}
+
+body main {
+  overflow-y: scroll;
+  background-color: var(--color-base-gray-100);
+}
+
+header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-base-gray-300);
+}
+
+header,
+nav,
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7.6rem;
+}
+
+nav ul li.active {
+  color: var(--color-base-gray-900);
+}
+
+header form {
+  flex: 1;
+  font-size: 1.6rem;
+}
+
+form .inputWrapper label {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.inputWrapper input {
+  padding: 1.6rem;
+  width: 100%;
+
+  font-weight: 600;
+  color: var(--color-base-gray-500);
+  background-color: var(--color-base-gray-50);
+
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+header img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover; /* faz com que a imagem cubra/preencha todo o espaço disponível, evitando distorções*/
+}
+
+main h1 {
+  padding-top: 1.6rem;
+}
+
+main .imagesGallery {
+  margin-top: 3.2rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+}
+
+.imageCard {
+  border-radius: 8px;
+  background-color: var(--color-base-white);
+  overflow: hidden;
+  transition-duration: 300ms;
+}
+
+.imageCard:hover {
+  box-shadow: 1px 1px 10px 5px var(--color-base-gray-50);
+}
+
+.imageCard img {
+  display: block;
+
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+
+  transition: all 300ms ease-in-out;
+}
+
+.imageCard img:hover {
+  filter: hue-rotate(7deg) contrast(101%) saturate(200%);
+  transform: scale(1.1) rotate(-2deg);
+}
+
+.imageDetails {
+  padding: 2.2rem;
+  background-color: var(--color-base-white);
+  z-index: 1;
+  position: relative;
+}
+
+.imageDetails h2 {
+  font-size: 1.8rem;
+}
+
+.imageTags {
+  margin-top: 1.2rem;
+}
+
+.imageTags span {
+  padding: 0.6rem;
+  background-color: var(--color-base-gray-100);
+
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 0;
+
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition-duration: 0.15s;
+}
+
+.imageTags span:hover {
+  filter: brightness(97%);
+}
+
+footer {
+  text-align: center;
+}
+
+p {
+  padding: 1.6rem;
+  font-weight: 600;
+}
+
+/* ANIMATIONS */
+
+header {
+  --startY: -100%;
+  animation: moveY 300ms linear;
+}
+
+footer {
+  --startY: 100%;
+  animation: moveY 300ms linear;
+}
+
+@keyframes moveY {
+  from {
+    transform: translateY(var(--startY));
+  }
+}
+
+.imageCard {
+  --delay: 300ms;
+  animation: appear 400ms var(--delay) backwards linear;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
